@@ -27,8 +27,27 @@ public class Mortis {
                                    I have marked this task as not done:
                                    """ + ls.get(index).toString());
             } else {
-                System.out.println("added: " + userInput);
-                ls.add(new Task(userInput));
+                if (userInput.startsWith("todo")) {
+                    String description = userInput.substring(5);
+                    Todo todo = new Todo(description);
+                    ls.add(todo);
+                } else if (userInput.startsWith("deadline")) {
+                    String[] parts = userInput.substring(9).split(" /by ");
+                    String description = parts[0];
+                    String ddl = parts[1];
+                    Deadline deadline = new Deadline(description, ddl);
+                    ls.add(deadline);
+                } else if (userInput.startsWith("event")) {
+                    String[] parts = userInput.substring(6).split(" /from ");
+                    String description = parts[0];
+                    String[] parts2 = parts[1].split(" /to ");
+                    String from = parts2[0];
+                    String to = parts2[1];
+                    Event event = new Event(description, from, to);
+                    ls.add(event);
+                }
+                System.out.println("I've added this task:");
+                System.out.println(ls.get(ls.size() - 1).toString());
             }
             userInput = sc.nextLine();
         }
