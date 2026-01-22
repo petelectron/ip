@@ -53,5 +53,6 @@ public class Mortis {
         }
 
         System.out.println("Goodbye, user.");
+        sc.close();
     }
 }

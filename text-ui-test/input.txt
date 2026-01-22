@@ -1,0 +1,9 @@
+todo todotask
+deadline deadlinetask /by Jan 1st
+event eventtask /from Jan 1st /to Jan 3rd
+list
+mark 2
+mark 3
+unmark 2
+list
+bye
