@@ -11,9 +11,11 @@ public class Mortis {
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
             if (userInput.equals("list")) {
+                System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < ls.size(); i++) {
                     System.out.println((i + 1) + "." + ls.get(i).toString());
                 }
+                System.out.println("(END OF LIST)");
             } else if (userInput.startsWith("mark")) {
                 String[] arr = userInput.split(" ");
                 try {
@@ -39,6 +41,20 @@ public class Mortis {
                     System.out.println("""
                         Please provide a valid task number to unmark.
                         E.g. "unmark 2"
+                        """);
+                }
+            } else if (userInput.startsWith("delete")) {
+                try {
+                    int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                    Task removedTask = ls.remove(index);
+                    System.out.println("""
+                                    I have removed this task:
+                                    """ + removedTask.toString());
+                } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                    System.out.println("""
+                        Please provide a valid task number to delete.
+                        E.g. "delete 2"
+                        Use "list" to check your list of tasks.
                         """);
                 }
             } else {
