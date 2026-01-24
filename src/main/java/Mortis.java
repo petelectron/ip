@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Mortis {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MortisException{
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> ls = new ArrayList<>();
 
@@ -15,39 +15,78 @@ public class Mortis {
                     System.out.println((i + 1) + "." + ls.get(i).toString());
                 }
             } else if (userInput.startsWith("mark")) {
-                int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                ls.get(index).markAsDone();
-                System.out.println("""
+                String[] arr = userInput.split(" ");
+                try {
+                    int index = Integer.parseInt(arr[1]) - 1;
+                    ls.get(index).markAsDone();
+                    System.out.println("""
                                    I have marked this task as done:
                                    """ + ls.get(index).toString());
-            } else if (userInput.startsWith("unmark")) {
-                int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                ls.get(index).unmarkAsDone();
-                System.out.println("""
-                                   I have marked this task as not done:
-                                   """ + ls.get(index).toString());
-            } else {
-                if (userInput.startsWith("todo")) {
-                    String description = userInput.substring(5);
-                    Todo todo = new Todo(description);
-                    ls.add(todo);
-                } else if (userInput.startsWith("deadline")) {
-                    String[] parts = userInput.substring(9).split(" /by ");
-                    String description = parts[0];
-                    String ddl = parts[1];
-                    Deadline deadline = new Deadline(description, ddl);
-                    ls.add(deadline);
-                } else if (userInput.startsWith("event")) {
-                    String[] parts = userInput.substring(6).split(" /from ");
-                    String description = parts[0];
-                    String[] parts2 = parts[1].split(" /to ");
-                    String from = parts2[0];
-                    String to = parts2[1];
-                    Event event = new Event(description, from, to);
-                    ls.add(event);
+                } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                    System.out.println("""
+                        Please provide a valid task number to mark.
+                        E.g. "mark 2"
+                        """);
                 }
-                System.out.println("I've added this task:");
-                System.out.println(ls.get(ls.size() - 1).toString());
+            } else if (userInput.startsWith("unmark")) {
+                try {
+                    int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                    ls.get(index).unmarkAsDone();
+                    System.out.println("""
+                                    I have marked this task as not done:
+                                    """ + ls.get(index).toString());
+                } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                    System.out.println("""
+                        Please provide a valid task number to unmark.
+                        E.g. "unmark 2"
+                        """);
+                }
+            } else {
+                try {
+                    if (userInput.startsWith("todo")) {
+                        String description = userInput.substring(5);
+                        Todo todo = new Todo(description);
+                        ls.add(todo);
+                    } else if (userInput.startsWith("deadline")) {
+                        String[] parts = userInput.substring(9).split(" /by ");
+                        String description = parts[0];
+                        String ddl = parts[1];
+                        Deadline deadline = new Deadline(description, ddl);
+                        ls.add(deadline);
+                    } else if (userInput.startsWith("event")) {
+                        String[] parts = userInput.substring(6).split(" /from ");
+                        String description = parts[0];
+                        String[] parts2 = parts[1].split(" /to ");
+                        String from = parts2[0];
+                        String to = parts2[1];
+                        Event event = new Event(description, from, to);
+                        ls.add(event);
+                    } else {
+                        System.out.println("""
+                            I don't know that command...
+                            My understood commands are: 
+                            list (shows all tasks),
+                            mark <num>, unmark <num> (mark or unmark task at position <num>),
+                            todo <description> (add a todo task)
+                            deadline <description> /by <ddl> (add a deadline task)
+                            event <description> /from <start> /to <end> (add an event task)
+                            bye (terminate the program)
+                            """);
+                        throw new MortisException("Unknown command");
+                    }
+                    System.out.println("I've added this task:");
+                    System.out.println(ls.get(ls.size() - 1).toString());
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("""
+                        Please provide the necessary details for the task.
+                        Command format:
+                        Todo: "todo <description>"
+                        Deadline: "deadline <description> /by <ddl>"
+                        Event: "event <description> /from <start> /to <end>"
+                        """);
+                } catch (MortisException e) {
+                    // Exception already handled above
+                }
             }
             userInput = sc.nextLine();
         }
