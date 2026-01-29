@@ -1,12 +1,51 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Mortis {
-    public static void main(String[] args) throws MortisException{
-        Scanner sc = new Scanner(System.in);
-        ArrayList<Task> ls = new ArrayList<>();
+/** 
+ * Mortis is a simple task management application. 
+ * It allows users to add, mark, unmark, delete, and list tasks.
+ * The tasks are saved to a file upon exiting the application.
+ * The task data is loaded back from the file when the application starts.
+ */
 
-        System.out.println("Hello, I'm Mortis.\nI'm case sensitive, please be nice to me.");
+public class Mortis {
+    public static void main(String[] args) throws MortisException, IOException {
+        Scanner sc = new Scanner(System.in);
+        String filePath = "ip/Mortis.txt";
+        ArrayList<Task> ls = new ArrayList<>();
+        
+        try {
+            FileReader fileReader = new FileReader(filePath);
+            BufferedReader br = new BufferedReader(fileReader);
+            String nextLine = br.readLine();
+            while (nextLine != null) {
+                ls.add(Task.createFromData(nextLine));
+                nextLine = br.readLine();
+            }
+            System.out.println("Successfully loaded existing data file.");
+            System.out.println("Current task list: ");
+            for (int i = 0; i < ls.size(); i++) {
+                    System.out.println((i + 1) + "." + ls.get(i).toString());
+                }
+            System.out.println("(END OF LIST)");
+            br.close();
+        } catch (IOException e) {
+            System.out.println("No existing data file found.");
+            System.out.println("Starting with an empty task list.");
+            File file = new File(filePath);
+        } catch (MortisException e) {
+            System.out.println("Error loading data: " + e.getMessage());
+            System.out.println("Starting with an empty task list.");
+            File file = new File(filePath);
+        }
+
+        System.out.println("Hello, I'm Mortis." + 
+                "\nI'm case sensitive, please be nice to me.");
 
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
@@ -57,57 +96,49 @@ public class Mortis {
                         Use "list" to check your list of tasks.
                         """);
                 }
-            } else {
+            } else if (userInput.startsWith("add")) {
                 try {
-                    if (userInput.startsWith("todo")) {
-                        String description = userInput.substring(5);
-                        Todo todo = new Todo(description);
-                        ls.add(todo);
-                    } else if (userInput.startsWith("deadline")) {
-                        String[] parts = userInput.substring(9).split(" /by ");
-                        String description = parts[0];
-                        String ddl = parts[1];
-                        Deadline deadline = new Deadline(description, ddl);
-                        ls.add(deadline);
-                    } else if (userInput.startsWith("event")) {
-                        String[] parts = userInput.substring(6).split(" /from ");
-                        String description = parts[0];
-                        String[] parts2 = parts[1].split(" /to ");
-                        String from = parts2[0];
-                        String to = parts2[1];
-                        Event event = new Event(description, from, to);
-                        ls.add(event);
-                    } else {
-                        System.out.println("""
-                            I don't know that command...
-                            My understood commands are: 
-                            list (shows all tasks),
-                            mark <num>, unmark <num> (mark or unmark task at position <num>),
-                            todo <description> (add a todo task)
-                            deadline <description> /by <ddl> (add a deadline task)
-                            event <description> /from <start> /to <end> (add an event task)
-                            bye (terminate the program)
-                            """);
-                        throw new MortisException("Unknown command");
-                    }
+                    Task task = Task.createFromInput(userInput.substring(4));
+                    ls.add(task);
                     System.out.println("I've added this task:");
                     System.out.println(ls.get(ls.size() - 1).toString());
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (MortisException | ArrayIndexOutOfBoundsException e) {
                     System.out.println("""
                         Please provide the necessary details for the task.
                         Command format:
-                        Todo: "todo <description>"
-                        Deadline: "deadline <description> /by <ddl>"
-                        Event: "event <description> /from <start> /to <end>"
+                        Todo: "add todo, <description>"
+                        Deadline: "add deadline, <description>, <ddl>"
+                        Event: "add event, <description>, <start>, <end>"
                         """);
-                } catch (MortisException e) {
-                    // Exception already handled above
                 }
+            } else {
+                System.out.println("""
+                            I don't know that command...
+                            My understood commands are: 
+                            >list (shows all tasks),
+                            >mark <num> (mark task at position <num>),
+                            >unmark <num> (unmark task at position <num>),
+                            >add todo, <description> (add a todo task)
+                            >add deadline, <description>, <ddl> (add a deadline task)
+                            >add event, <description>, <start>, <end> (add an event task)
+                            >bye (terminate the program)
+                            """);
             }
             userInput = sc.nextLine();
         }
-
         System.out.println("Goodbye, user.");
+
+        FileWriter fw = new FileWriter(filePath);
+        String dataToSave = "";
+        for (Task t : ls) {
+            dataToSave += t.toDataString() + "\n";
+        }
+        fw.write(dataToSave);
+        fw.close();
+
+        System.out.println("Your data has been saved to "
+                + filePath + ".");
+        
         sc.close();
     }
 }
