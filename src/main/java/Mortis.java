@@ -20,6 +20,13 @@ public class Mortis {
                 ls.add(Task.createFromData(nextLine));
                 nextLine = br.readLine();
             }
+            System.out.println("Successfully loaded existing data file.");
+            System.out.println("Current task list: ");
+            for (int i = 0; i < ls.size(); i++) {
+                    System.out.println((i + 1) + "." + ls.get(i).toString());
+                }
+            System.out.println("(END OF LIST)");
+            br.close();
         } catch (IOException e) {
             System.out.println("No existing data file found.");
             System.out.println("Starting with an empty task list.");

@@ -1,19 +1,28 @@
+Successfully loaded existing data file.
+Current task list: 
+(END OF LIST)
+Hello, I'm Mortis.
+I'm case sensitive, please be nice to me.
 I've added this task:
 [T][ ] todotask
 I've added this task:
 [D][ ] deadlinetask (by: Jan 1st)
 I've added this task:
 [E][ ] eventtask (from: Jan 1st to: Jan 3rd)
+Here are the tasks in your list:
 1.[T][ ] todotask
 2.[D][ ] deadlinetask (by: Jan 1st)
 3.[E][ ] eventtask (from: Jan 1st to: Jan 3rd)
+(END OF LIST)
 I have marked this task as done:
 [D][X] deadlinetask (by: Jan 1st)
-I have marked this task as done:
-[E][X] eventtask (from: Jan 1st to: Jan 3rd)
 I have marked this task as not done:
 [D][ ] deadlinetask (by: Jan 1st)
-1.[T][ ] todotask
-2.[D][ ] deadlinetask (by: Jan 1st)
-3.[E][X] eventtask (from: Jan 1st to: Jan 3rd)
+I have removed this task:
+[E][ ] eventtask (from: Jan 1st to: Jan 3rd)
+I have removed this task:
+[D][ ] deadlinetask (by: Jan 1st)
+I have removed this task:
+[T][ ] todotask
 Goodbye, user.
+Your data has been saved to ip/Mortis.txt.
