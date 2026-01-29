@@ -7,7 +7,29 @@ public class Task {
         this.isDone = false;
     }
 
-    public static Task createFromData(String str) throws MortisException{
+    public static Task createFromInput(String str) throws MortisException {
+        String[] arr = str.split(", ");
+        String description = arr[1];
+        if (arr[0].equals("todo")) {
+            Todo todo = new Todo(description);
+            return todo;
+        } else if (arr[0].equals("deadline")) {
+            String ddl = arr[2];
+            Deadline deadline = new Deadline(description, ddl);
+            return deadline;
+        } else if (arr[0].equals("event")) {
+            String from = arr[2];
+            String to = arr[3];
+            Event event = new Event(description, from, to);
+            return event;
+        } else {
+            throw new MortisException("Unknown task type in input");
+        }
+    }
+
+
+
+    public static Task createFromData(String str) throws MortisException {
         String[] arr = str.split(" | ");
         Task task = null;
         if (arr[0].equals("T")) {

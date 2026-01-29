@@ -74,52 +74,33 @@ public class Mortis {
                         Use "list" to check your list of tasks.
                         """);
                 }
-            } else {
+            } else if (userInput.startsWith("add")) {
                 try {
-                    if (userInput.startsWith("todo")) {
-                        String description = userInput.substring(5);
-                        Todo todo = new Todo(description);
-                        ls.add(todo);
-                    } else if (userInput.startsWith("deadline")) {
-                        String[] parts = userInput.substring(9).split(" /by ");
-                        String description = parts[0];
-                        String ddl = parts[1];
-                        Deadline deadline = new Deadline(description, ddl);
-                        ls.add(deadline);
-                    } else if (userInput.startsWith("event")) {
-                        String[] parts = userInput.substring(6).split(" /from ");
-                        String description = parts[0];
-                        String[] parts2 = parts[1].split(" /to ");
-                        String from = parts2[0];
-                        String to = parts2[1];
-                        Event event = new Event(description, from, to);
-                        ls.add(event);
-                    } else {
-                        System.out.println("""
-                            I don't know that command...
-                            My understood commands are: 
-                            list (shows all tasks),
-                            mark <num>, unmark <num> (mark or unmark task at position <num>),
-                            todo <description> (add a todo task)
-                            deadline <description> /by <ddl> (add a deadline task)
-                            event <description> /from <start> /to <end> (add an event task)
-                            bye (terminate the program)
-                            """);
-                        throw new MortisException("Unknown command");
-                    }
+                    Task task = Task.createFromInput(userInput.substring(4));
+                    ls.add(task);
                     System.out.println("I've added this task:");
                     System.out.println(ls.get(ls.size() - 1).toString());
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (MortisException e) {
                     System.out.println("""
                         Please provide the necessary details for the task.
                         Command format:
-                        Todo: "todo <description>"
-                        Deadline: "deadline <description> /by <ddl>"
-                        Event: "event <description> /from <start> /to <end>"
+                        Todo: "add todo <description>"
+                        Deadline: "add deadline <description>, <ddl>"
+                        Event: "add event <description>, <start>, <end>"
                         """);
-                } catch (MortisException e) {
-                    // Exception already handled above
                 }
+            } else {
+                System.out.println("""
+                            I don't know that command...
+                            My understood commands are: 
+                            >list (shows all tasks),
+                            >mark <num> (mark task at position <num>),
+                            >unmark <num> (unmark task at position <num>),
+                            >add todo <description> (add a todo task)
+                            >add deadline <description>, <ddl> (add a deadline task)
+                            >add event <description>, <start>, <end> (add an event task)
+                            >bye (terminate the program)
+                            """);
             }
             userInput = sc.nextLine();
         }
