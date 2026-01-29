@@ -27,8 +27,6 @@ public class Task {
         }
     }
 
-
-
     public static Task createFromData(String str) throws MortisException {
         String[] arr = str.split(" | ");
         Task task = null;
@@ -57,6 +55,10 @@ public class Task {
 
     public void unmarkAsDone() {
         this.isDone = false;
+    }
+
+    public String toDataString() {
+        return "";
     }
 
     @Override

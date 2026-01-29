@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,15 +13,21 @@ public class Mortis {
         ArrayList<Task> ls = new ArrayList<>();
         
         try {
-            File data = new File(filePath);
             FileReader fileReader = new FileReader(filePath);
             BufferedReader br = new BufferedReader(fileReader);
-            while (br.readLine() != null) {
-                String line = br.readLine();
-                ls.add(Task.createFromData(line));
+            String nextLine = br.readLine();
+            while (nextLine != null) {
+                ls.add(Task.createFromData(nextLine));
+                nextLine = br.readLine();
             }
         } catch (IOException e) {
-            System.out.println("No existing data file found. A new file will be created upon exiting.");
+            System.out.println("No existing data file found.");
+            System.out.println("Starting with an empty task list.");
+            File file = new File(filePath);
+        } catch (MortisException e) {
+            System.out.println("Error loading data: " + e.getMessage());
+            System.out.println("Starting with an empty task list.");
+            File file = new File(filePath);
         }
 
         System.out.println("Hello, I'm Mortis.\nI'm case sensitive, please be nice to me.");
@@ -80,13 +87,13 @@ public class Mortis {
                     ls.add(task);
                     System.out.println("I've added this task:");
                     System.out.println(ls.get(ls.size() - 1).toString());
-                } catch (MortisException e) {
+                } catch (MortisException | ArrayIndexOutOfBoundsException e) {
                     System.out.println("""
                         Please provide the necessary details for the task.
                         Command format:
-                        Todo: "add todo <description>"
-                        Deadline: "add deadline <description>, <ddl>"
-                        Event: "add event <description>, <start>, <end>"
+                        Todo: "add todo, <description>"
+                        Deadline: "add deadline, <description>, <ddl>"
+                        Event: "add event, <description>, <start>, <end>"
                         """);
                 }
             } else {
@@ -96,16 +103,27 @@ public class Mortis {
                             >list (shows all tasks),
                             >mark <num> (mark task at position <num>),
                             >unmark <num> (unmark task at position <num>),
-                            >add todo <description> (add a todo task)
-                            >add deadline <description>, <ddl> (add a deadline task)
-                            >add event <description>, <start>, <end> (add an event task)
+                            >add todo, <description> (add a todo task)
+                            >add deadline, <description>, <ddl> (add a deadline task)
+                            >add event, <description>, <start>, <end> (add an event task)
                             >bye (terminate the program)
                             """);
             }
             userInput = sc.nextLine();
         }
-
         System.out.println("Goodbye, user.");
+
+        FileWriter fw = new FileWriter(filePath);
+        String dataToSave = "";
+        for (Task t : ls) {
+            dataToSave += t.toDataString() + "\n";
+        }
+        fw.write(dataToSave);
+        fw.close();
+
+        System.out.println("Your data has been saved to "
+                + filePath + ".");
+        
         sc.close();
     }
 }
