@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/** 
+ * Mortis is a simple task management application. 
+ * It allows users to add, mark, unmark, delete, and list tasks.
+ * The tasks are saved to a file upon exiting the application.
+ * The task data is loaded back from the file when the application starts.
+ */
+
 public class Mortis {
     public static void main(String[] args) throws MortisException, IOException {
         Scanner sc = new Scanner(System.in);
@@ -37,7 +44,8 @@ public class Mortis {
             File file = new File(filePath);
         }
 
-        System.out.println("Hello, I'm Mortis.\nI'm case sensitive, please be nice to me.");
+        System.out.println("Hello, I'm Mortis." + 
+                "\nI'm case sensitive, please be nice to me.");
 
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {

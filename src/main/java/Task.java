@@ -7,6 +7,13 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns new task created from user input string.
+     *
+     * @param str Input string from user.
+     * @return new Task created from input string.
+     * @throws MortisException if input string is invalid.
+     */ 
     public static Task createFromInput(String str) throws MortisException {
         String[] arr = str.split(", ");
         String description = arr[1];
@@ -27,6 +34,13 @@ public class Task {
         }
     }
 
+    /**
+     * Returns new task created from line of stored data.
+     *
+     * @param str A line of stored data.
+     * @return new Task created from data string.
+     * @throws MortisException if data string is invalid.
+     */ 
     public static Task createFromData(String str) throws MortisException {
         String[] arr = str.split(" | ");
         Task task = null;
@@ -45,6 +59,12 @@ public class Task {
         return task;
     }
 
+
+    /**
+     * Returns a string representation of the task's status icon.
+     *
+     * @return String representation of the task status icon.
+     */
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]");
     }
@@ -57,6 +77,11 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns a string representation of the task in data format to be stored.
+     *
+     * @return String representation of the task in data format.
+     */
     public String toDataString() {
         return "";
     }
