@@ -1,10 +1,27 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Mortis {
-    public static void main(String[] args) throws MortisException{
+    public static void main(String[] args) throws MortisException, IOException {
         Scanner sc = new Scanner(System.in);
+        String filePath = "ip/Mortis.txt";
         ArrayList<Task> ls = new ArrayList<>();
+        
+        try {
+            File data = new File(filePath);
+            FileReader fileReader = new FileReader(filePath);
+            BufferedReader br = new BufferedReader(fileReader);
+            while (br.readLine() != null) {
+                String line = br.readLine();
+                ls.add(Task.createFromData(line));
+            }
+        } catch (IOException e) {
+            System.out.println("No existing data file found. A new file will be created upon exiting.");
+        }
 
         System.out.println("Hello, I'm Mortis.\nI'm case sensitive, please be nice to me.");
 
