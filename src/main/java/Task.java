@@ -32,7 +32,7 @@ public class Task {
             return todo;
         } else if (arr[0].equals("deadline")) {
             String ddl = arr[2];
-            String[] parts = ddl.split(" ");
+            //String[] parts = ddl.split(" ");
             Deadline deadline = new Deadline(description, ddl);
             return deadline;
         } else if (arr[0].equals("event")) {
@@ -53,7 +53,11 @@ public class Task {
      * @throws MortisException if data string is invalid.
      */ 
     public static Task createFromData(String str) throws MortisException {
-        String[] arr = str.split(" | ");
+        String[] arr = str.split(", ");
+        //for (int i = 0; i < arr.length; i++) {
+        //    System.out.println("Arr " + i + ": " + arr[i]);
+        //}
+
         Task task = null;
         if (arr[0].equals("T")) {
             task = new Todo(arr[2]);

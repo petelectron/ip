@@ -1,6 +1,6 @@
 add todo, todotask
-add deadline, deadlinetask, Jan 1st
-add event, eventtask, Jan 1st, Jan 3rd
+add deadline, deadlinetask, 2020-10-10 1000
+add event, eventtask, 2020-11-11 1100, 2020-11-11 1111
 list
 mark 2
 unmark 2

@@ -14,7 +14,8 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
 
     protected LocalDateTime ddl;
-    protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    protected DateTimeFormatter formatter = 
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
     public Deadline(String description, String ddl) {
         super(description);
@@ -23,11 +24,11 @@ public class Deadline extends Task {
 
     @Override
     public String toDataString() {
-        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + ddl;
+        return "D, " + (isDone ? "1" : "0") + ", " + description + ", " + ddl.format(formatter);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + ddl + ")";
+        return "[D]" + super.toString() + " (by: " + ddl.format(formatter) + ")";
     }
 }
