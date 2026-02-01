@@ -1,10 +1,24 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+/**
+     * Deadline object representing a deadline task
+     * with a description and deadline date.
+     * @param description Description of the task.
+     * @param isDone Completion status of the task.
+     * @param ddl Deadline date of the task.
+     *
+     * @throws MortisException if input string is invalid.
+     */ 
+
 public class Deadline extends Task {
 
-    protected String ddl;
+    protected LocalDateTime ddl;
+    protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
     public Deadline(String description, String ddl) {
         super(description);
-        this.ddl = ddl;
+        this.ddl = LocalDateTime.parse(ddl, formatter); 
     }
 
     @Override
