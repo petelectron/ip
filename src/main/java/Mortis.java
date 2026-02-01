@@ -32,7 +32,7 @@ public class Mortis {
             for (int i = 0; i < ls.size(); i++) {
                     System.out.println((i + 1) + "." + ls.get(i).toString());
                 }
-            System.out.println("(END OF LIST)");
+            System.out.println("(END OF LIST)" + "\n");
             br.close();
         } catch (IOException e) {
             System.out.println("No existing data file found.");
@@ -44,8 +44,12 @@ public class Mortis {
             File file = new File(filePath);
         }
 
-        System.out.println("Hello, I'm Mortis." + 
-                "\nI'm case sensitive, please be nice to me.");
+        System.out.println("""
+            Hello, I'm Mortis. 
+            I'm case sensitive, please be nice to me.
+            Enter time in the format "yyyy-MM-dd HHmm".
+            E.g. 2023-10-15 1800.
+            """);
 
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {

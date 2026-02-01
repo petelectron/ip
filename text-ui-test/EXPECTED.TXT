@@ -1,27 +1,31 @@
 Successfully loaded existing data file.
 Current task list: 
 (END OF LIST)
+
 Hello, I'm Mortis.
 I'm case sensitive, please be nice to me.
+Enter time in the format "yyyy-MM-dd HHmm".
+E.g. 2023-10-15 1800.
+
 I've added this task:
 [T][ ] todotask
 I've added this task:
-[D][ ] deadlinetask (by: Jan 1st)
+[D][ ] deadlinetask (by: Oct 10 10:00, 2020)
 I've added this task:
-[E][ ] eventtask (from: Jan 1st to: Jan 3rd)
+[E][ ] eventtask (from: Nov 11 11:00, 2020 to: Nov 11 11:11, 2020)
 Here are the tasks in your list:
 1.[T][ ] todotask
-2.[D][ ] deadlinetask (by: Jan 1st)
-3.[E][ ] eventtask (from: Jan 1st to: Jan 3rd)
+2.[D][ ] deadlinetask (by: Oct 10 10:00, 2020)
+3.[E][ ] eventtask (from: Nov 11 11:00, 2020 to: Nov 11 11:11, 2020)
 (END OF LIST)
 I have marked this task as done:
-[D][X] deadlinetask (by: Jan 1st)
+[D][X] deadlinetask (by: Oct 10 10:00, 2020)
 I have marked this task as not done:
-[D][ ] deadlinetask (by: Jan 1st)
+[D][ ] deadlinetask (by: Oct 10 10:00, 2020)
 I have removed this task:
-[E][ ] eventtask (from: Jan 1st to: Jan 3rd)
+[E][ ] eventtask (from: Nov 11 11:00, 2020 to: Nov 11 11:11, 2020)
 I have removed this task:
-[D][ ] deadlinetask (by: Jan 1st)
+[D][ ] deadlinetask (by: Oct 10 10:00, 2020)
 I have removed this task:
 [T][ ] todotask
 Goodbye, user.
