@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
 /**
      * Event object representing an event task
      * with a description, start date, and end date.
@@ -17,6 +18,8 @@ public class Event extends Task {
     protected LocalDateTime to;
     protected DateTimeFormatter formatter = 
         DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    protected DateTimeFormatter outputFormatter = 
+        DateTimeFormatter.ofPattern("MMM dd HH:mm, yyyy");
 
 
     public Event(String description, String from, String to) {
@@ -34,7 +37,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + 
-            " (from: " + from.format(formatter) 
-            + " to: " + to.format(formatter) + ")";
+            " (from: " + from.format(outputFormatter) 
+            + " to: " + to.format(outputFormatter) + ")";
     }
 }

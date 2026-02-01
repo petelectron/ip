@@ -16,6 +16,8 @@ public class Deadline extends Task {
     protected LocalDateTime ddl;
     protected DateTimeFormatter formatter = 
         DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    protected DateTimeFormatter outputFormatter = 
+        DateTimeFormatter.ofPattern("MMM dd HH:mm, yyyy");
 
     public Deadline(String description, String ddl) {
         super(description);
@@ -29,6 +31,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + ddl.format(formatter) + ")";
+        return "[D]" + super.toString() + " (by: " + ddl.format(outputFormatter) + ")";
     }
 }

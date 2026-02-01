@@ -10,22 +10,22 @@ E.g. 2023-10-15 1800.
 I've added this task:
 [T][ ] todotask
 I've added this task:
-[D][ ] deadlinetask (by: 2020-10-10 1000)
+[D][ ] deadlinetask (by: Oct 10 10:00, 2020)
 I've added this task:
-[E][ ] eventtask (from: 2020-11-11 1100 to: 2020-11-11 1111)
+[E][ ] eventtask (from: Nov 11 11:00, 2020 to: Nov 11 11:11, 2020)
 Here are the tasks in your list:
 1.[T][ ] todotask
-2.[D][ ] deadlinetask (by: 2020-10-10 1000)
-3.[E][ ] eventtask (from: 2020-11-11 1100 to: 2020-11-11 1111)
+2.[D][ ] deadlinetask (by: Oct 10 10:00, 2020)
+3.[E][ ] eventtask (from: Nov 11 11:00, 2020 to: Nov 11 11:11, 2020)
 (END OF LIST)
 I have marked this task as done:
-[D][X] deadlinetask (by: 2020-10-10 1000)
+[D][X] deadlinetask (by: Oct 10 10:00, 2020)
 I have marked this task as not done:
-[D][ ] deadlinetask (by: 2020-10-10 1000)
+[D][ ] deadlinetask (by: Oct 10 10:00, 2020)
 I have removed this task:
-[E][ ] eventtask (from: 2020-11-11 1100 to: 2020-11-11 1111)
+[E][ ] eventtask (from: Nov 11 11:00, 2020 to: Nov 11 11:11, 2020)
 I have removed this task:
-[D][ ] deadlinetask (by: 2020-10-10 1000)
+[D][ ] deadlinetask (by: Oct 10 10:00, 2020)
 I have removed this task:
 [T][ ] todotask
 Goodbye, user.
