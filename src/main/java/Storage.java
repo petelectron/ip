@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 
+ * Handles loading and saving of task data to a file. 
+ */
+
 public class Storage {
     private String filePath;
     public Storage(String filePath) {

@@ -1,5 +1,8 @@
 import java.util.List;
 
+/** 
+ * A list of tasks.
+ */
 
 public class TaskList {
     private List<Task> tasks;
