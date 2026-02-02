@@ -17,20 +17,21 @@ public class Mortis {
     public static void main(String[] args) throws MortisException, IOException {
         Scanner sc = new Scanner(System.in);
         String filePath = "ip/Mortis.txt";
-        ArrayList<Task> ls = new ArrayList<>();
+        TaskList taskList = new TaskList(new ArrayList<Task>());
+        Ui ui = new Ui();
         
         try {
             FileReader fileReader = new FileReader(filePath);
             BufferedReader br = new BufferedReader(fileReader);
             String nextLine = br.readLine();
             while (nextLine != null) {
-                ls.add(Task.createFromData(nextLine));
+                taskList.addTask(Task.createFromData(nextLine));
                 nextLine = br.readLine();
             }
             System.out.println("Successfully loaded existing data file.");
             System.out.println("Current task list: ");
-            for (int i = 0; i < ls.size(); i++) {
-                    System.out.println((i + 1) + "." + ls.get(i).toString());
+            for (int i = 0; i < taskList.getTasks().size(); i++) {
+                    System.out.println((i + 1) + "." + taskList.getTasks().get(i).toString());
                 }
             System.out.println("(END OF LIST)" + "\n");
             br.close();
@@ -44,29 +45,17 @@ public class Mortis {
             File file = new File(filePath);
         }
 
-        System.out.println("""
-            Hello, I'm Mortis. 
-            I'm case sensitive, please be nice to me.
-            Enter time in the format "yyyy-MM-dd HHmm".
-            E.g. 2023-10-15 1800.
-            """);
+        ui.displayWelcomeMessage();
 
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
             if (userInput.equals("list")) {
-                System.out.println("Here are the tasks in your list:");
-                for (int i = 0; i < ls.size(); i++) {
-                    System.out.println((i + 1) + "." + ls.get(i).toString());
-                }
-                System.out.println("(END OF LIST)");
+                taskList.displayTasks();
             } else if (userInput.startsWith("mark")) {
                 String[] arr = userInput.split(" ");
                 try {
                     int index = Integer.parseInt(arr[1]) - 1;
-                    ls.get(index).markAsDone();
-                    System.out.println("""
-                                   I have marked this task as done:
-                                   """ + ls.get(index).toString());
+                    taskList.markTask(index);
                 } catch (NumberFormatException | IndexOutOfBoundsException e) {
                     System.out.println("""
                         Please provide a valid task number to mark.
@@ -76,10 +65,7 @@ public class Mortis {
             } else if (userInput.startsWith("unmark")) {
                 try {
                     int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                    ls.get(index).unmarkAsDone();
-                    System.out.println("""
-                                    I have marked this task as not done:
-                                    """ + ls.get(index).toString());
+                    taskList.unmarkTask(index);
                 } catch (NumberFormatException | IndexOutOfBoundsException e) {
                     System.out.println("""
                         Please provide a valid task number to unmark.
@@ -89,10 +75,7 @@ public class Mortis {
             } else if (userInput.startsWith("delete")) {
                 try {
                     int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                    Task removedTask = ls.remove(index);
-                    System.out.println("""
-                                    I have removed this task:
-                                    """ + removedTask.toString());
+                    taskList.deleteTask(index);
                 } catch (NumberFormatException | IndexOutOfBoundsException e) {
                     System.out.println("""
                         Please provide a valid task number to delete.
@@ -103,9 +86,7 @@ public class Mortis {
             } else if (userInput.startsWith("add")) {
                 try {
                     Task task = Task.createFromInput(userInput.substring(4));
-                    ls.add(task);
-                    System.out.println("I've added this task:");
-                    System.out.println(ls.get(ls.size() - 1).toString());
+                    taskList.addTask(task);
                 } catch (MortisException | ArrayIndexOutOfBoundsException e) {
                     System.out.println("""
                         Please provide the necessary details for the task.
@@ -122,6 +103,7 @@ public class Mortis {
                             >list (shows all tasks),
                             >mark <num> (mark task at position <num>),
                             >unmark <num> (unmark task at position <num>),
+                            >delete <num> (delete task at position <num>),
                             >add todo, <description> (add a todo task)
                             >add deadline, <description>, <ddl> (add a deadline task)
                             >add event, <description>, <start>, <end> (add an event task)
@@ -133,11 +115,7 @@ public class Mortis {
         System.out.println("Goodbye, user.");
 
         FileWriter fw = new FileWriter(filePath);
-        String dataToSave = "";
-        for (Task t : ls) {
-            dataToSave += t.toDataString() + "\n";
-        }
-        fw.write(dataToSave);
+        fw.write(taskList.toDataString());
         fw.close();
 
         System.out.println("Your data has been saved to "
