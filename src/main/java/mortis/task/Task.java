@@ -1,3 +1,6 @@
+package mortis.task;
+import mortis.MortisException;
+
 /**
      * A Task object representing a task with a description and completion status.
      *

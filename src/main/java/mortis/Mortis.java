@@ -1,7 +1,13 @@
+package mortis;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import mortis.storage.*;
+import mortis.task.*;
+import mortis.parser.*;
+import mortis.ui.*;
 
 /** 
  * Mortis is a simple task management application. 

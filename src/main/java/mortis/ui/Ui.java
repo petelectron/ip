@@ -1,3 +1,4 @@
+package mortis.ui;
 /**
  * Ui class to handle user interactions.
 */ 
