@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,22 +16,12 @@ public class Mortis {
         String filePath = "ip/Mortis.txt";
         TaskList taskList = new TaskList(new ArrayList<Task>());
         Ui ui = new Ui();
+        Storage storage = new Storage(filePath);
         
         try {
-            FileReader fileReader = new FileReader(filePath);
-            BufferedReader br = new BufferedReader(fileReader);
-            String nextLine = br.readLine();
-            while (nextLine != null) {
-                taskList.addTask(Task.createFromData(nextLine));
-                nextLine = br.readLine();
-            }
+            taskList = new TaskList(storage.load());
             System.out.println("Successfully loaded existing data file.");
-            System.out.println("Current task list: ");
-            for (int i = 0; i < taskList.getTasks().size(); i++) {
-                    System.out.println((i + 1) + "." + taskList.getTasks().get(i).toString());
-                }
-            System.out.println("(END OF LIST)" + "\n");
-            br.close();
+            taskList.displayTasks();
         } catch (IOException e) {
             System.out.println("No existing data file found.");
             System.out.println("Starting with an empty task list.");
@@ -45,7 +32,9 @@ public class Mortis {
             File file = new File(filePath);
         }
 
+        ui.lineBreak();
         ui.displayWelcomeMessage();
+        ui.lineBreak();
 
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
@@ -114,13 +103,7 @@ public class Mortis {
         }
         System.out.println("Goodbye, user.");
 
-        FileWriter fw = new FileWriter(filePath);
-        fw.write(taskList.toDataString());
-        fw.close();
-
-        System.out.println("Your data has been saved to "
-                + filePath + ".");
-        
+        storage.save(taskList);
         sc.close();
     }
 }

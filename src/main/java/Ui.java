@@ -14,4 +14,8 @@ public class Ui {
      public void displayWelcomeMessage() {
           System.out.println(WELCOME_MESSAGE);
      }
+
+     public void lineBreak() {
+          System.out.println("____________________________________________________________\n");
+     }
 }
