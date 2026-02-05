@@ -4,6 +4,7 @@ import java.util.List;
 /** 
  * A list of tasks.
  */
+
 public class TaskList {
     private List<Task> tasks;
 
@@ -20,6 +21,23 @@ public class TaskList {
      *
      * @param task Task object to be added.
      */
+    public void findTasks(String toFind) {
+        String toPrint = "";
+        for (Task task : tasks) {
+            if (task.isMatch(toFind)) {
+                toPrint += "\n" + task.toString();
+            }
+        }
+        if (toPrint.equals("")) {
+            System.out.println("No tasks of such requirement found...");
+        } else {
+            System.out.println("Task(s) that match your search:");
+            System.out.println(toPrint);
+            System.out.println("(END OF LIST)");
+        }
+
+    }
+
     public void addTask(Task task) {
         tasks.add(task);
         System.out.println("Added task: " + task.toString());
