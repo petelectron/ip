@@ -5,15 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
-     * Deadline object representing a deadline task
-     * with a description and deadline date.
-     * @param description Description of the task.
-     * @param isDone Completion status of the task.
-     * @param ddl Deadline date of the task.
-     *
-     * @throws MortisException if input string is invalid.
-     */ 
-
+ * A Deadline task.
+ */
 public class Deadline extends Task {
 
     protected LocalDateTime ddl;
