@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import mortis.MortisException;
-import mortis.task.*;
+import mortis.task.Task;
+import mortis.task.TaskList;
 
 /** 
  * Handles loading and saving of task data to a file. 

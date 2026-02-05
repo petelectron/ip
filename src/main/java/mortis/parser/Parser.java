@@ -1,6 +1,7 @@
 package mortis.parser;
 import mortis.MortisException;
-import mortis.task.*;
+import mortis.task.Task;
+import mortis.task.TaskList;
 import mortis.ui.*;
 /** 
  * Parses user input.

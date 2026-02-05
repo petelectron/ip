@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import mortis.task.Task;
+import mortis.task.TaskList;
 import mortis.storage.*;
-import mortis.task.*;
 import mortis.parser.*;
 import mortis.ui.*;
 
@@ -16,7 +17,7 @@ import mortis.ui.*;
 public class Mortis {
     public static void main(String[] args) throws MortisException, IOException {
         Scanner sc = new Scanner(System.in);
-        String filePath = "ip/Mortis.txt";
+        String filePath = "src/main/java/mortis/data/Mortis.txt";
         TaskList taskList = new TaskList(new ArrayList<Task>());
         Ui ui = new Ui();
         Storage storage = new Storage(filePath);

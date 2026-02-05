@@ -1,4 +1,5 @@
 package mortis.task;
+
 import mortis.MortisException;
 
 /**
