@@ -20,3 +20,6 @@ bin/
 
 # Jar
 /out/artifacts/*
+
+# Jar
+out/artifacts/*
