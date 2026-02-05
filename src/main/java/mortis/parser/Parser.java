@@ -3,10 +3,10 @@ import mortis.MortisException;
 import mortis.task.Task;
 import mortis.task.TaskList;
 import mortis.ui.*;
+
 /** 
  * Parses user input.
  */
-
 public class Parser {
     public Parser() {
     }

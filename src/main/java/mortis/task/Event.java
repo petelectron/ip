@@ -18,10 +18,8 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
     protected LocalDateTime from;
     protected LocalDateTime to;
-    protected DateTimeFormatter formatter = 
-        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-    protected DateTimeFormatter outputFormatter = 
-        DateTimeFormatter.ofPattern("MMM dd HH:mm, yyyy");
+    protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    protected DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd HH:mm, yyyy");
 
 
     public Event(String description, String from, String to) {

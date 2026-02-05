@@ -12,7 +12,6 @@ import mortis.task.TaskList;
 /** 
  * Handles loading and saving of task data to a file. 
  */
-
 public class Storage {
     private String filePath;
     public Storage(String filePath) {
