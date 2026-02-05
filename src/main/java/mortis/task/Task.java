@@ -78,6 +78,10 @@ public class Task {
         return task;
     }
 
+    public boolean isMatch(String toFind) {
+        return description.contains(toFind);
+    }
+
 
     /**
      * Returns a string representation of the task's status icon.

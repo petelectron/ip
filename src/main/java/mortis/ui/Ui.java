@@ -32,10 +32,15 @@ public class Ui {
                             >mark <num> (mark task at position <num>),
                             >unmark <num> (unmark task at position <num>),
                             >delete <num> (delete task at position <num>),
+                            >find <description> (find tasks based on search),
                             >add todo, <description> (add a todo task)
                             >add deadline, <description>, <ddl> (add a deadline task)
                             >add event, <description>, <start>, <end> (add an event task)
                             >bye (terminate the program)
                             """);
+     }
+
+     public void findError() {
+          System.out.println("Please provide a valid keyword to find.");
      }
 }

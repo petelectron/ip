@@ -60,6 +60,14 @@ public class Parser {
                         Event: "add event, <description>, <start>, <end>"
                         """);
             }
+        } else if (input.startsWith("find")) {
+            try {
+                String toFind = input.substring(5);
+                System.out.println("Finding tasks:");
+                taskList.findTasks(toFind);
+            } catch (StringIndexOutOfBoundsException e) {
+                ui.findError();
+            }
         } else {
             ui.unknownCommandMessage();
         }
