@@ -12,11 +12,16 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
-
+/**
+ * Tests the Storage class.
+ */
 public class StorageTest {
     private String filePath = "StorageTestFile.txt";
     private ArrayList<Task> taskList = new ArrayList<Task>();
 
+    /**
+     * Tests the load() method.
+     */
     @Test
     public void testLoading() {
         try {
@@ -29,6 +34,9 @@ public class StorageTest {
         }
     }
 
+    /**
+     * Tests the save() method.
+     */
     public void testSaving() {
         //write this later
     }
