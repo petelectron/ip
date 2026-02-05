@@ -3,14 +3,21 @@ import mortis.MortisException;
 import mortis.task.Task;
 import mortis.task.TaskList;
 import mortis.ui.*;
-/** 
+
+/**
  * Parses user input.
  */
-
 public class Parser {
     public Parser() {
     }
-    
+
+    /**
+     * Parses user input, accordingly updates task list and displays ui.
+     *
+     * @param input User's input into chatbot.
+     * @param taskList TaskList to update and pass back.
+     * @param ui Ui to display messages to user with.
+     */
     public void parse(String input, TaskList taskList, Ui ui) {
         if (input.equals("list")) {
             taskList.displayTasks();

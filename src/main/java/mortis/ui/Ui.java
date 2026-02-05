@@ -1,8 +1,8 @@
 package mortis.ui;
+
 /**
  * Ui class to handle user interactions.
-*/ 
-
+*/
 public class Ui {
     
      private final String WELCOME_MESSAGE = """
@@ -12,18 +12,30 @@ public class Ui {
             E.g. 2023-10-15 1800.
             """;
 
+     /**
+      * Displays a welcome message for the user.
+      */
      public void displayWelcomeMessage() {
           System.out.println(WELCOME_MESSAGE);
      }
 
+     /**
+      * Displays a goodbye message for the user.
+      */
      public void displayGoodbyeMessage() {
           System.out.println("Goodbye, user.");
      }
 
+     /**
+      * Displays a line break.
+      */
      public void lineBreak() {
           System.out.println("____________________________________________________________\n");
      }
 
+     /**
+      * Displays a list of commands available.
+      */
      public void unknownCommandMessage() {
           System.out.println("""
                             I don't know that command...

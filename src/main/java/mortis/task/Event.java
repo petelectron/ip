@@ -5,16 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
-     * Event object representing an event task
-     * with a description, start date, and end date.
-     * @param description Description of the task.
-     * @param isDone Completion status of the task.
-     * @param from Start date of the event.
-     * @param to End date of the event.
-     *
-     * @throws MortisException if input string is invalid.
-     */ 
-
+ * An Event task.
+ */
 public class Event extends Task {
     protected LocalDateTime from;
     protected LocalDateTime to;

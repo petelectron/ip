@@ -3,14 +3,8 @@ package mortis.task;
 import mortis.MortisException;
 
 /**
-     * A Task object representing a task with a description and completion status.
-     *
-     * @param description Description of the task.
-     * @param isDone Completion status of the task.
-     *
-     * @throws MortisException if input string is invalid.
-     */ 
-
+ * A task with a description and completion status.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -26,8 +20,7 @@ public class Task {
      * @param str Input string from user.
      * @return new Task created from input string.
      * @throws MortisException if input string is invalid.
-     */ 
-
+     */
     public static Task createFromInput(String str) throws MortisException {
         String[] arr = str.split(", ");
         String description = arr[1];
@@ -58,10 +51,10 @@ public class Task {
      */ 
     public static Task createFromData(String str) throws MortisException {
         String[] arr = str.split(", ");
-        //for (int i = 0; i < arr.length; i++) {
+        // Debugging:
+        // for (int i = 0; i < arr.length; i++) {
         //    System.out.println("Arr " + i + ": " + arr[i]);
         //}
-
         Task task = null;
         if (arr[0].equals("T")) {
             task = new Todo(arr[2]);
