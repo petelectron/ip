@@ -1,8 +1,9 @@
 package mortis.parser;
+
 import mortis.MortisException;
 import mortis.task.Task;
 import mortis.task.TaskList;
-import mortis.ui.*;
+import mortis.ui.Ui;
 
 /**
  * Parses user input.
@@ -23,9 +24,9 @@ public class Parser {
             taskList.displayTasks();
             ui.lineBreak();
         } else if (input.startsWith("mark")) {
-            String[] arr = input.split(" ");
+            String[] userInputArray = input.split(" ");
             try {
-                int index = Integer.parseInt(arr[1]) - 1;
+                int index = Integer.parseInt(userInputArray[1]) - 1;
                 taskList.markTask(index);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 System.out.println("""
@@ -58,12 +59,12 @@ public class Parser {
             try {
                 Task task = Task.createFromInput(input.substring(4));
                 taskList.addTask(task);
-            } catch (MortisException | ArrayIndexOutOfBoundsException e) {
+            } catch (MortisException | ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
                 System.out.println("""
                         Please provide the necessary details for the task.
                         Command format:
                         Todo: "add todo, <description>"
-                        Deadline: "add deadline, <description>, <ddl>"
+                        Deadline: "add deadline, <description>, <deadline>"
                         Event: "add event, <description>, <start>, <end>"
                         """);
             }

@@ -1,4 +1,5 @@
 package mortis.storage;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -26,15 +27,15 @@ public class Storage {
      * @throws MortisException if Task class cannot create from data.
      */
     public List<Task> load() throws IOException, MortisException {
-        List<Task> outputList = new ArrayList<>();
+        List<Task> loadedTasks = new ArrayList<>();
         FileReader fileReader = new FileReader(filePath);
         BufferedReader br = new BufferedReader(fileReader);
         String nextLine = br.readLine();
         while (nextLine != null) {
-            outputList.add(Task.createFromData(nextLine));
+            loadedTasks.add(Task.createFromData(nextLine));
             nextLine = br.readLine();
         }
-        return outputList;
+        return loadedTasks;
     }
 
     /**

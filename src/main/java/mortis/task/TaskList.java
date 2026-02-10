@@ -1,5 +1,7 @@
 package mortis.task;
+
 import java.util.List;
+import java.lang.StringBuilder;
 
 /** 
  * A list of tasks.
@@ -17,27 +19,34 @@ public class TaskList {
     }
 
     /**
-     * Adds task to the list.
+     * Finds and prints matching tasks based on string input.
      *
-     * @param task Task object to be added.
+     * @param toFind Search keyword to find in tasks.
      */
     public void findTasks(String toFind) {
-        String toPrint = "";
+        StringBuilder stringbuilder = new StringBuilder("");
         for (Task task : tasks) {
             if (task.isMatch(toFind)) {
-                toPrint += "\n" + task.toString();
+                stringbuilder.append(task.toString());
+                stringbuilder.append("\n");
             }
         }
-        if (toPrint.equals("")) {
+        if (stringbuilder.isEmpty()) {
             System.out.println("No tasks of such requirement found...");
         } else {
             System.out.println("Task(s) that match your search:");
-            System.out.println(toPrint);
+            System.out.println(stringbuilder.toString());
             System.out.println("(END OF LIST)");
+
         }
 
     }
 
+    /**
+     * Adds task to the list.
+     *
+     * @param task Task object to be added.
+     */
     public void addTask(Task task) {
         tasks.add(task);
         System.out.println("Added task: " + task.toString());
@@ -79,11 +88,13 @@ public class TaskList {
      * Prints the list of tasks.
      */
     public void displayTasks() {
-        System.out.println("Here are the tasks in your list:");
+        StringBuilder stringbuilder = new StringBuilder("");
+        stringbuilder.append("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + "." + tasks.get(i).toString());
+            stringbuilder.append((i + 1) + "." + tasks.get(i).toString() + "\n");
         }
-        System.out.println("(END OF LIST)");
+        stringbuilder.append("(END OF LIST)");
+        System.out.println(stringbuilder.toString());
     }
 
     /**

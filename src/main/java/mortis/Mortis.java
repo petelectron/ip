@@ -1,4 +1,5 @@
 package mortis;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,9 +7,9 @@ import java.util.Scanner;
 
 import mortis.task.Task;
 import mortis.task.TaskList;
-import mortis.storage.*;
-import mortis.parser.*;
-import mortis.ui.*;
+import mortis.storage.Storage;
+import mortis.parser.Parser;
+import mortis.ui.Ui;
 
 /** 
  * Mortis is a simple task management application. 
@@ -17,10 +18,10 @@ import mortis.ui.*;
 public class Mortis {
     public static void main(String[] args) throws MortisException, IOException {
         Scanner sc = new Scanner(System.in);
-        String filePath = "src/main/java/mortis/data/Mortis.txt";
+        final String FILEPATH = "data/Mortis.txt";
         TaskList taskList = new TaskList(new ArrayList<Task>());
         Ui ui = new Ui();
-        Storage storage = new Storage(filePath);
+        Storage storage = new Storage(FILEPATH);
         Parser parser = new Parser();
         
         try {
@@ -30,11 +31,11 @@ public class Mortis {
         } catch (IOException e) {
             System.out.println("No existing data file found.");
             System.out.println("Starting with an empty task list.");
-            File file = new File(filePath);
+            File file = new File(FILEPATH);
         } catch (MortisException e) {
             System.out.println("Error loading data: " + e.getMessage());
             System.out.println("Starting with an empty task list.");
-            File file = new File(filePath);
+            File file = new File(FILEPATH);
         }
 
         ui.lineBreak();

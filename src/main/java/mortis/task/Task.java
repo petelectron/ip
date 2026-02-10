@@ -22,23 +22,23 @@ public class Task {
      * @throws MortisException if input string is invalid.
      */
     public static Task createFromInput(String str) throws MortisException {
-        String[] arr = str.split(", ");
-        String description = arr[1];
-        if (arr[0].equals("todo")) {
+        String[] userInput = str.split(", ");
+        String description = userInput[1];
+        if (userInput[0].equals("todo")) {
             Todo todo = new Todo(description);
             return todo;
-        } else if (arr[0].equals("deadline")) {
-            String ddl = arr[2];
-            //String[] parts = ddl.split(" ");
-            Deadline deadline = new Deadline(description, ddl);
+        } else if (userInput[0].equals("deadline")) {
+            String deadlineTime = userInput[2];
+            //String[] parts = deadline.split(" ");
+            Deadline deadline = new Deadline(description, deadlineTime);
             return deadline;
-        } else if (arr[0].equals("event")) {
-            String from = arr[2];
-            String to = arr[3];
+        } else if (userInput[0].equals("event")) {
+            String from = userInput[2];
+            String to = userInput[3];
             Event event = new Event(description, from, to);
             return event;
         } else {
-            throw new MortisException("Unknown task type in input");
+            throw new MortisException("Unknown task type in input.");
         }
     }
 
@@ -48,7 +48,7 @@ public class Task {
      * @param str A line of stored data.
      * @return new Task created from data string.
      * @throws MortisException if data string is invalid.
-     */ 
+     */
     public static Task createFromData(String str) throws MortisException {
         String[] arr = str.split(", ");
         // Debugging:

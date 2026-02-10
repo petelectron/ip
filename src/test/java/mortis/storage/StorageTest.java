@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import mortis.storage.Storage;
-import mortis.task.*;
+import mortis.task.Task;
+import mortis.task.Todo;
 import mortis.MortisException;
 
 import java.io.IOException;
