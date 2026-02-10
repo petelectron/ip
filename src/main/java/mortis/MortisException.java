@@ -1,4 +1,5 @@
 package mortis;
+
 /** 
  * Custom exception class for Mortis application. 
  * */

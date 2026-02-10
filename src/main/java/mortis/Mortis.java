@@ -14,7 +14,6 @@ import mortis.ui.Ui;
 /** 
  * Mortis is a simple task management application. 
  */
-
 public class Mortis {
     public static void main(String[] args) throws MortisException, IOException {
         Scanner sc = new Scanner(System.in);
@@ -23,7 +22,7 @@ public class Mortis {
         Ui ui = new Ui();
         Storage storage = new Storage(FILEPATH);
         Parser parser = new Parser();
-        
+
         try {
             taskList = new TaskList(storage.load());
             System.out.println("Successfully loaded existing data file.");
@@ -50,5 +49,9 @@ public class Mortis {
         ui.displayGoodbyeMessage();
         storage.save(taskList);
         sc.close();
+    }
+
+    public String getResponse(String input) {
+        return "hi";
     }
 }
