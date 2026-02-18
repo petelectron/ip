@@ -12,32 +12,11 @@ public class Ui {
         E.g. 2023-10-15 1800.
         """;
 
-    /**
-     * Displays a welcome message for the user.
-     */
-    public void displayWelcomeMessage() {
-        System.out.println(WELCOME_MESSAGE);
-    }
+    private final String GOODBYE_MESSAGE = "Goodbye, user.";
 
-    /**
-     * Displays a goodbye message for the user.
-     */
-    public void displayGoodbyeMessage() {
-        System.out.println("Goodbye, user.");
-    }
+    private final String LINEBREAK = "____________________________";
 
-    /**
-     * Displays a line break.
-     */
-    public void lineBreak() {
-        System.out.println("____________________________________________________________\n");
-    }
-
-    /**
-     * Displays a list of commands available.
-     */
-    public void unknownCommandMessage() {
-        System.out.println("""
+    private final String UNKNOWN_COMMAND = """
             I don't know that command...
             My understood commands are:
             >list (shows all tasks),
@@ -49,10 +28,48 @@ public class Ui {
             >add deadline, <description>, <deadline> (add a deadline task)
             >add event, <description>, <start>, <end> (add an event task)
             >bye (terminate the program)
-            """);
+            """;
+
+    private final String FIND_ERROR_MESSAGE = "Please provide a valid keyword to find.";
+
+    private final String INVALID_TASK_MARK = """
+        Please provide a valid task number to mark.
+        E.g. "mark 2"
+        """;
+
+    /**
+     * Returns a welcome message for the user.
+     */
+    public String welcomeMessage() {
+        return WELCOME_MESSAGE;
     }
 
-    public void findError() {
-        System.out.println("Please provide a valid keyword to find.");
+    /**
+     * Returns a goodbye message for the user.
+     */
+    public String goodbyeMessage() {
+        return GOODBYE_MESSAGE;
+    }
+
+    /**
+     * Returns a line break.
+     */
+    public String lineBreak() {
+        return LINEBREAK;
+    }
+
+    /**
+     * Displays a list of commands available.
+     */
+    public String unknownCommandMessage() {
+        return UNKNOWN_COMMAND;
+    }
+
+    public String findError() {
+        return FIND_ERROR_MESSAGE;
+    }
+
+    public String invalidTaskMark() {
+        return INVALID_TASK_MARK;
     }
 }

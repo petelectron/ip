@@ -87,14 +87,14 @@ public class TaskList {
     /**
      * Prints the list of tasks.
      */
-    public void displayTasks() {
+    public String displayTasks() {
         StringBuilder stringbuilder = new StringBuilder("");
         stringbuilder.append("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             stringbuilder.append((i + 1) + "." + tasks.get(i).toString() + "\n");
         }
         stringbuilder.append("(END OF LIST)");
-        System.out.println(stringbuilder.toString());
+        return stringbuilder.toString();
     }
 
     /**
