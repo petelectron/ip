@@ -28,7 +28,7 @@ test {
 }
 
 application {
-    mainClass.set("Launcher")
+    mainClass.set("mortis.Launcher")
 }
 
 dependencies {
@@ -48,9 +48,15 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "mortis"
     archiveClassifier = null
 }
 
