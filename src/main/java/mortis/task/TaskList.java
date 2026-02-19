@@ -23,7 +23,7 @@ public class TaskList {
      *
      * @param toFind Search keyword to find in tasks.
      */
-    public void findTasks(String toFind) {
+    public String findTasks(String toFind) {
         StringBuilder stringbuilder = new StringBuilder("");
         for (Task task : tasks) {
             if (task.isMatch(toFind)) {
@@ -32,14 +32,12 @@ public class TaskList {
             }
         }
         if (stringbuilder.isEmpty()) {
-            System.out.println("No tasks of such requirement found...");
+            return "No tasks of such requirement found...";
         } else {
-            System.out.println("Task(s) that match your search:");
-            System.out.println(stringbuilder.toString());
-            System.out.println("(END OF LIST)");
-
+            stringbuilder.insert(0, "Task(s) that match your search:");
+            stringbuilder.append("(END OF LIST)");
+            return stringbuilder.toString();
         }
-
     }
 
     /**

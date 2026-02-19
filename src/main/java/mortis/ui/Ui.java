@@ -1,5 +1,7 @@
 package mortis.ui;
 
+import mortis.task.Task;
+
 /**
  * Ui class to handle user interactions.
  */
@@ -11,11 +13,8 @@ public class Ui {
         Enter time in the format "yyyy-MM-dd HHmm".
         E.g. 2023-10-15 1800.
         """;
-
     private final String GOODBYE_MESSAGE = "Goodbye, user.";
-
     private final String LINEBREAK = "____________________________";
-
     private final String UNKNOWN_COMMAND = """
             I don't know that command...
             My understood commands are:
@@ -29,12 +28,26 @@ public class Ui {
             >add event, <description>, <start>, <end> (add an event task)
             >bye (terminate the program)
             """;
-
     private final String FIND_ERROR_MESSAGE = "Please provide a valid keyword to find.";
-
     private final String INVALID_TASK_MARK = """
         Please provide a valid task number to mark.
         E.g. "mark 2"
+        """;
+    private final String INVALID_TASK_UNMARK = """
+        Please provide a valid task number to unmark.
+        E.g. "unmark 2"
+        """;
+    private final String INVALID_TASK_DELETE = """
+        Please provide a valid task number to delete.
+        E.g. "delete 2"
+        Use "list" to check your list of tasks.
+        """;
+    private final String MISSING_TASK_DETAILS = """
+        Please provide the necessary details for the task.
+        Command format:
+        Todo: "add todo, <description>"
+        Deadline: "add deadline, <description>, <deadline>"
+        Event: "add event, <description>, <start>, <end>"
         """;
 
     /**
@@ -71,5 +84,33 @@ public class Ui {
 
     public String invalidTaskMark() {
         return INVALID_TASK_MARK;
+    }
+
+    public String invalidTaskUnmark() {
+        return INVALID_TASK_UNMARK;
+    }
+
+    public String invalidTaskDelete() {
+        return INVALID_TASK_DELETE;
+    }
+
+    public String invalidTaskDetails() {
+        return MISSING_TASK_DETAILS;
+    }
+
+    public String markSuccessfulMessage(Task task) {
+        return "Successfully marked the following task as done: " + task.toString();
+    }
+
+    public String unmarkSuccessfulMessage(Task task) {
+        return "Successfully marked the following task as not done: " + task.toString();
+    }
+
+    public String deleteSuccessfulMessage(Task task) {
+        return "Successfully deleted the following task: " + task.toString();
+    }
+
+    public String addSuccessfulMessage(Task task) {
+        return "Successfully added the following task: " + task.toString();
     }
 }

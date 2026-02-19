@@ -22,8 +22,8 @@ public class MainWindow extends AnchorPane {
 
     private Mortis mortis;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image mortisImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
+    private Image mortisImage = new Image(this.getClass().getResourceAsStream("/images/Mortis.jpg"));
 
     @FXML
     public void initialize() {
@@ -53,5 +53,16 @@ public class MainWindow extends AnchorPane {
             DialogBox.getMortisDialog(response, mortisImage)
         );
         userInput.clear();
+
+        if (mortis.shouldExit()) {
+            // Close the window after a short delay to allow the user to see the goodbye message
+            javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(0.5));
+            delay.setOnFinished(event -> {
+                // Get the stage (window) and close it
+                javafx.stage.Stage stage = (javafx.stage.Stage) dialogContainer.getScene().getWindow();
+                stage.close();
+            });
+            delay.play();
+        }
     }
 }

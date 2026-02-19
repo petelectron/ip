@@ -18,6 +18,7 @@ public class Mortis {
     private final Storage storage;
     private final Parser parser;
     private final Ui ui;
+    private boolean shouldExit = false;
 
     /**
      * Constructs a Mortis instance, loading tasks from storage.
@@ -32,13 +33,10 @@ public class Mortis {
         TaskList loadedTasks;
         try {
             loadedTasks = new TaskList(storage.load());
-            // Optionally show a message that loading succeeded (can be retrieved later)
         } catch (IOException e) {
             loadedTasks = new TaskList(new ArrayList<>());
-            // Optionally store error message for later display
         } catch (MortisException e) {
             loadedTasks = new TaskList(new ArrayList<>());
-            // Optionally store error message
         }
         this.taskList = loadedTasks;
     }
@@ -52,14 +50,11 @@ public class Mortis {
     public String processCommand(String input) {
         StringBuilder response = new StringBuilder();
 
-        // If this is the first command, we might want to show a welcome message.
-        // This implementation assumes the GUI handles the welcome message separately.
-        // Alternatively, you can track a boolean flag and return welcome on first call.
-
         if (input.equalsIgnoreCase("bye")) {
             response.append(ui.goodbyeMessage());
             try {
                 storage.save(taskList);
+                shouldExit = true;
             } catch (IOException e) {
                 return e.getMessage();
             }
@@ -91,5 +86,9 @@ public class Mortis {
      */
     public String getWelcomeMessage() {
         return ui.welcomeMessage();
+    }
+
+    public boolean shouldExit() {
+        return this.shouldExit;
     }
 }
