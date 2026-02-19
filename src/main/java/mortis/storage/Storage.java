@@ -9,14 +9,16 @@ import java.util.List;
 import mortis.MortisException;
 import mortis.task.Task;
 import mortis.task.TaskList;
+import mortis.ui.Ui;
 
 /** 
  * Handles loading and saving of task data to a file. 
  */
 public class Storage {
-    private String filePath;
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    private final String FILEPATH;
+    private Ui ui = new Ui();
+    public Storage(String FILEPATH) {
+        this.FILEPATH = FILEPATH;
     }
 
     /**
@@ -28,7 +30,7 @@ public class Storage {
      */
     public List<Task> load() throws IOException, MortisException {
         List<Task> loadedTasks = new ArrayList<>();
-        FileReader fileReader = new FileReader(filePath);
+        FileReader fileReader = new FileReader(FILEPATH);
         BufferedReader br = new BufferedReader(fileReader);
         String nextLine = br.readLine();
         while (nextLine != null) {
@@ -43,12 +45,11 @@ public class Storage {
      *
      * @throws IOException if filePath is invalid.
      */
-    public void save(TaskList taskList) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
+    public String save(TaskList taskList) throws IOException {
+        FileWriter fw = new FileWriter(FILEPATH);
         fw.write(taskList.toDataString());
         fw.close();
 
-        System.out.println("Your data has been saved to "
-                + filePath + ".");
+        return ui.saveSuccessful(FILEPATH);
     }
 }

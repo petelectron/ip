@@ -14,7 +14,7 @@ public class Ui {
         E.g. 2023-10-15 1800.
         """;
     private final String GOODBYE_MESSAGE = "Goodbye, user.";
-    private final String LINEBREAK = "____________________________";
+    private final String LINEBREAK = "\n";
     private final String UNKNOWN_COMMAND = """
             I don't know that command...
             My understood commands are:
@@ -112,5 +112,9 @@ public class Ui {
 
     public String addSuccessfulMessage(Task task) {
         return "Successfully added the following task: " + task.toString();
+    }
+
+    public String saveSuccessful(String filePath) {
+        return "Successfully saved updated task list into " + filePath;
     }
 }

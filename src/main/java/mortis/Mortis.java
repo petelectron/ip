@@ -52,8 +52,9 @@ public class Mortis {
 
         if (input.equalsIgnoreCase("bye")) {
             response.append(ui.goodbyeMessage());
+            response.append(ui.lineBreak());
             try {
-                storage.save(taskList);
+                response.append(storage.save(taskList));
                 shouldExit = true;
             } catch (IOException e) {
                 return e.getMessage();

@@ -1,5 +1,7 @@
 package mortis.task;
 
+import mortis.ui.Ui;
+
 import java.util.List;
 import java.lang.StringBuilder;
 
@@ -9,6 +11,7 @@ import java.lang.StringBuilder;
 
 public class TaskList {
     private List<Task> tasks;
+    private Ui ui = new Ui();
 
     public TaskList(List<Task> tasks) {
         this.tasks = tasks;
@@ -34,7 +37,7 @@ public class TaskList {
         if (stringbuilder.isEmpty()) {
             return "No tasks of such requirement found...";
         } else {
-            stringbuilder.insert(0, "Task(s) that match your search:");
+            stringbuilder.insert(0, "Task(s) that match your search:\n");
             stringbuilder.append("(END OF LIST)");
             return stringbuilder.toString();
         }
@@ -55,9 +58,9 @@ public class TaskList {
      *
      * @param index Index of Task object to be deleted.
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         Task task = tasks.remove(index);
-        System.out.println("Removed task: " + task.toString());
+        return ui.deleteSuccessfulMessage(task);
     }
 
     /**

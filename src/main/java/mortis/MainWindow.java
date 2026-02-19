@@ -56,7 +56,7 @@ public class MainWindow extends AnchorPane {
 
         if (mortis.shouldExit()) {
             // Close the window after a short delay to allow the user to see the goodbye message
-            javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(0.5));
+            javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(1.5));
             delay.setOnFinished(event -> {
                 // Get the stage (window) and close it
                 javafx.stage.Stage stage = (javafx.stage.Stage) dialogContainer.getScene().getWindow();
