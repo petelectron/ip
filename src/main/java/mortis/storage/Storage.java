@@ -46,6 +46,7 @@ public class Storage {
      * @throws IOException if filePath is invalid.
      */
     public String save(TaskList taskList) throws IOException {
+        assert FILEPATH.equals("data/Mortis.txt");
         FileWriter fw = new FileWriter(FILEPATH);
         fw.write(taskList.toDataString());
         fw.close();

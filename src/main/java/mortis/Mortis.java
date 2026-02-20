@@ -67,6 +67,7 @@ public class Mortis {
                 response.append("An error occurred: ").append(e.getMessage());
             }
         }
+        assert !response.isEmpty() : "response missing";
         return response.toString();
     }
 
