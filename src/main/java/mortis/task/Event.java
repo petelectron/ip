@@ -14,17 +14,24 @@ public class Event extends Task {
     protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     protected DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd HH:mm, yyyy");
 
-
     public Event(String description, String from, String to) {
         super(description);
+        this.after = "";
+        this.from = LocalDateTime.parse(from, formatter);
+        this.to = LocalDateTime.parse(to, formatter);
+    }
+
+    public Event(String description, String after, String from, String to) {
+        super(description, after);
         this.from = LocalDateTime.parse(from, formatter);
         this.to = LocalDateTime.parse(to, formatter);
     }
 
     @Override
     public String toDataString() {
-        return "E, " + (isDone ? "1" : "0") + ", " + description 
-            + ", " + from.format(formatter) + ", " + to.format(formatter);
+        return "E, " + (isDone ? "1" : "0") + ", " + description
+            + ", " + (after.isEmpty() ? ", " : ", " + after + ", ")
+            + from.format(formatter) + ", " + to.format(formatter);
     }
 
     @Override

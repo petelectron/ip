@@ -14,12 +14,19 @@ public class Deadline extends Task {
 
     public Deadline(String description, String deadline) {
         super(description);
+        this.after = "";
+        this.deadline = LocalDateTime.parse(deadline, formatter);
+    }
+
+    public Deadline(String description, String after, String deadline) {
+        super(description, after);
         this.deadline = LocalDateTime.parse(deadline, formatter);
     }
 
     @Override
     public String toDataString() {
-        return "D, " + (isDone ? "1" : "0") + ", " + description + ", " + deadline.format(formatter);
+        return "D, " + (isDone ? "1" : "0") + ", " + description + ", "
+            + (after.isEmpty() ? ", " : ", " + after + ", ") + deadline.format(formatter);
     }
 
     @Override

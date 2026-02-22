@@ -8,9 +8,22 @@ import mortis.MortisException;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected String after;
 
     public Task(String description) {
         this.description = description;
+        this.isDone = false;
+    }
+
+    /**
+     * Constructor that adds "do-after" description.
+     *
+     * @param description description of the task.
+     * @param after description of what it comes after.
+     */
+    public Task(String description, String after) {
+        this.description = description;
+        this.after = after;
         this.isDone = false;
     }
 
@@ -24,21 +37,23 @@ public class Task {
     public static Task createFromInput(String str) throws MortisException {
         String[] userInput = str.split(", ");
         String description = userInput[1];
+        Task task= null;
         if (userInput[0].equals("todo")) {
-            Todo todo = new Todo(description);
-            return todo;
+            task = (userInput[2] != null && userInput[2].contains("after"))
+                ? new Todo(description, userInput[2]) //todo after
+                : new Todo(description); //todo
         } else if (userInput[0].equals("deadline")) {
-            String deadlineTime = userInput[2];
-            Deadline deadline = new Deadline(description, deadlineTime);
-            return deadline;
+            task = (userInput[2] != null && userInput[2].contains("after"))
+                ? new Deadline(description, userInput[2], userInput[3]) //deadline after
+                : new Deadline(description, userInput[2]); //deadline
         } else if (userInput[0].equals("event")) {
-            String from = userInput[2];
-            String to = userInput[3];
-            Event event = new Event(description, from, to);
-            return event;
+            task = (userInput[2] != null && userInput[2].contains("after"))
+                ? new Event(description, userInput[2], userInput[3], userInput[4]) //event after
+                : new Event(description, userInput[2], userInput[3]); //event
         } else {
             throw new MortisException("Unknown task type in input.");
         }
+        return task;
     }
 
     /**
@@ -52,11 +67,17 @@ public class Task {
         String[] arr = str.split(", ");
         Task task = null;
         if (arr[0].equals("T")) {
-            task = new Todo(arr[2]);
+            task = (arr[3] != null)
+                ? new Todo(arr[2], arr[3]) //todo after
+                : new Todo(arr[2]);
         } else if (arr[0].equals("D")) {
-            task = new Deadline(arr[2], arr[3]);
+            task = (arr[3].startsWith("after"))
+                ? new Deadline(arr[2], arr[3], arr[4]) //deadline after
+                : new Deadline(arr[2], arr[3]);
         } else if (arr[0].equals("E")) {
-            task = new Event(arr[2], arr[3], arr[4]);
+            task = (arr[3].startsWith("after"))
+                ? new Event(arr[2], arr[3], arr[4], arr[5])
+                : new Event(arr[2], arr[3], arr[4]);
         } else {
             throw new MortisException("Unknown task type in data.");
         }
@@ -99,6 +120,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return getStatusIcon() + " " + description;
+        return getStatusIcon() + " " + description
+            + (after.isEmpty() ? "" : ", " + after);
     }
 }

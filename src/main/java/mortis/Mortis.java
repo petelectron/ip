@@ -62,7 +62,7 @@ public class Mortis {
         } else {
             try {
                 response.append(parser.parse(input, taskList, ui));
-                storage.save(taskList); // Auto-save after each command (optional)
+                storage.save(taskList); //auto-save after every command
             } catch (Exception e) {
                 response.append("An error occurred: ").append(e.getMessage());
             }
