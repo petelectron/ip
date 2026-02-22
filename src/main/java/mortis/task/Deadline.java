@@ -26,7 +26,7 @@ public class Deadline extends Task {
     @Override
     public String toDataString() {
         return "D, " + (isDone ? "1" : "0") + ", " + description + ", "
-            + (after.isEmpty() ? ", " : ", " + after + ", ") + deadline.format(formatter);
+            + (after.isEmpty() ? "" : after + ", ") + deadline.format(formatter);
     }
 
     @Override

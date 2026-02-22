@@ -1,3 +1,3 @@
 T, 0, desc, after some event
-D, 0, hi, , after hiafter, 2020-03-03 1800
-E, 0, eventdesc, , after aftereventdesc, 2020-03-03 1800, 2020-03-03 1900
+D, 0, hi, after hiafter, 2020-03-03 1800
+E, 0, eventdesc, after aftereventdesc, 2020-03-03 1800, 2020-03-03 1900
