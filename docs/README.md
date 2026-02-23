@@ -30,14 +30,26 @@ You can add three types of tasks:
 2. Deadline tasks (containing deadline time)
 3. Event tasks (containing start and end time)
 
+For every task type, you can optionally add include a parameter 
+```<after (event description)>``` to specify if it should be done after something.
+
+
 ### Adding a todo task
 ```add todo, <description>, <(optional) do-after description>```
 
+Example: ```add todo, read book``` 
+```
+Successfully added the following task: [T][ ] read book
+```
+
+OR: ```add todo, read book, after eating lunch```
+
+```
+Successfully added the following task: [T][ ] read book (after eating lunch)
+```
+
 ### Adding a deadline task
 ```add deadline, <description>, <(optional) do-after description>, <deadline time>```
-
-### Adding an event task
-```add event, <description>, <(optional) do-after description>, <start time>, <end time>```
 
 Example: `add deadline, write project report, 2026-02-23 2359`
 
@@ -45,13 +57,28 @@ Example: `add deadline, write project report, 2026-02-23 2359`
 Successfully added the following task: [D][ ] write project report (by: Feb 23 23:59, 2026)
 ```
 
-Include an optional parameter ```<after (description)>``` when adding a task to specify if it should be done after something.
-
-Example: `add todo, eat breakfast, after brushing teeth`
+OR: `add deadline, write project report, after brainstorming ideas, 2026-02-23 2359`
 
 ```
-Successfully added the following task: [T][ ] eat breakfast (after brushing teeth)
+Successfully added the following task: [D][ ] write project report (after brainstorming ideas) (by: Feb 23 23:59, 2026)
 ```
+
+
+### Adding an event task
+```add event, <description>, <(optional) do-after description>, <start time>, <end time>```
+
+Example: ```add event, project meeting, 2020-02-23 1800, 2020-02-23 1900``` 
+
+```
+Successfully added the following task: [E][ ] project meeting (from: Feb 23 18:00, 2026 to: Feb 23 19:00, 2026)
+```
+
+OR: ```add event, project meeting, after watching briefing, 2020-02-23 1800, 2020-02-23 1900```
+
+```
+Successfully added the following task: [E][ ] project meeting (after brainstorming ideas) (from: Feb 23 18:00, 2026 to: Feb 23 19:00, 2026)
+```
+
 
 ## Listing all tasks: ```list```
 Shows a list of all of your tasks.
@@ -97,4 +124,4 @@ Exits the program.
 ## Saving and loading
 Your data is loaded from data/Mortis.txt upon initialisation, 
 and saved back automatically after any command that changes it. 
-There is no need to save manually.
+There is no need to save manually. However, if the save file is corrupted, it will start on a new file.
