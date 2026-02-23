@@ -25,14 +25,25 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image mortisImage = new Image(this.getClass().getResourceAsStream("/images/Mortis.png"));
+    Image bgImage = new Image(getClass().getResourceAsStream("/images/Wallpaper.png"));
+
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.prefWidthProperty().bind(scrollPane.widthProperty());
-        Platform.runLater(() ->
-            scrollPane.lookup(".viewport").setStyle("-fx-background-color: transparent;")
-        );
+        Platform.runLater(() -> {
+            AnchorPane root = (AnchorPane) scrollPane.getParent();
+            root.setBackground(new Background(new BackgroundImage(
+                bgImage,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT
+            )));
+        });
+        scrollPane.setStyle("-fx-background-color: transparent; -fx-background: transparent;");
+        dialogContainer.setStyle("-fx-background-color: transparent;");
     }
 
     /** Injects the Mortis instance */

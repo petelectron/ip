@@ -4,36 +4,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="600.0" prefWidth="400.0"
-            style="-fx-background-image: url('/images/wallpaper.png');
-            -fx-background-size: auto; -fx-background-position: top-left; -fx-background-repeat: repeat;"
-            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="mortis.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mortis.MainWindow">
     <children>
-        <TextField fx:id="userInput" onAction="#handleUserInput"
-                   prefHeight="41.0"
-                   promptText="Enter command here..." style="-fx-background-color: F0DDC8;"
-                   AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="77.0">
+        <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="41.0" promptText="Enter command here..." style="-fx-background-color: #F0DDC8;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="77.0">
             <font>
-                <Font name="System Italic" size="12.0"/>
+                <Font name="System Italic" size="12.0" />
             </font>
         </TextField>
-        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput"
-                prefHeight="41.0" prefWidth="76.0" style="-fx-background-color: D1AB9A;" text="SEND"
-                AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0">
+        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" style="-fx-background-color: #D1AB9A;" text="SEND" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0">
             <font>
-                <Font name="Franklin Gothic Medium Cond" size="16.0"/>
+                <Font name="Franklin Gothic Medium Cond" size="16.0" />
             </font>
         </Button>
 
-        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0"
-                    style="-fx-background-color: transparent;"
-                    AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" style="-fx-background-color: transparent;" vvalue="1.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="400.0"
-                      style="-fx-background-color: transparent;"
-                    />
+                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="400.0" style="-fx-background-color: transparent;" />
             </content>
         </ScrollPane>
     </children>
