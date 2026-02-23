@@ -35,11 +35,15 @@ public class Task {
      * @throws MortisException if input string is invalid.
      */
     public static Task createFromInput(String str) throws MortisException {
+        if (str.contains("|")) {
+            throw new MortisException("Invalid character detected in input: '|' delimiter ");
+        }
         String[] userInput = str.split(", ");
         String description = userInput[1];
+        System.out.println(description);
         Task task= null;
         if (userInput[0].equals("todo")) {
-            task = (userInput[2] != null && userInput[2].contains("after"))
+            task = (userInput.length > 2 && userInput[2].contains("after"))
                 ? new Todo(description, userInput[2]) //todo after
                 : new Todo(description); //todo
         } else if (userInput[0].equals("deadline")) {
