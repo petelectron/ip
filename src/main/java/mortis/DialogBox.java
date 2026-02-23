@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -30,13 +31,22 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
-            this.setMargin(this, new javafx.geometry.Insets(5));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         dialog.setText(text);
         displayPicture.setImage(img);
+
+        parentProperty().addListener((obs, oldParent, newParent) -> {
+            if (newParent instanceof VBox vbox) {
+                VBox.setMargin(this, new javafx.geometry.Insets(5));
+                this.prefWidthProperty().bind(vbox.widthProperty());
+                dialog.maxWidthProperty().bind(vbox.widthProperty()
+                    .subtract(displayPicture.getFitWidth())
+                    .subtract(20));
+            }
+        });
     }
 
     /**

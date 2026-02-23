@@ -25,11 +25,11 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image mortisImage = new Image(this.getClass().getResourceAsStream("/images/Mortis.png"));
-    private Image wallpaper = new Image(this.getClass().getResourceAsStream("/images/Wallpaper.jpg"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.prefWidthProperty().bind(scrollPane.widthProperty());
         Platform.runLater(() ->
             scrollPane.lookup(".viewport").setStyle("-fx-background-color: transparent;")
         );
