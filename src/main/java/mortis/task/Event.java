@@ -4,6 +4,7 @@ import mortis.MortisException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 /**
  * An Event task.
@@ -11,18 +12,31 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
     protected LocalDateTime from;
     protected LocalDateTime to;
-    protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    protected DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm").withResolverStyle(ResolverStyle.STRICT);
     protected DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd HH:mm, yyyy");
 
     public Event(String description, String from, String to) {
         super(description);
         this.after = "";
+        if (from.contains("yyyy")) {
+            from = from.replace("yyyy", "uuuu");
+        }
+        if (to.contains("yyyy")) {
+            to = to.replace("yyyy", "uuuu");
+        }
         this.from = LocalDateTime.parse(from, formatter);
         this.to = LocalDateTime.parse(to, formatter);
     }
 
     public Event(String description, String after, String from, String to) {
         super(description, after);
+        if (from.contains("yyyy")) {
+            from = from.replace("yyyy", "uuuu");
+        }
+        if (to.contains("yyyy")) {
+            to = to.replace("yyyy", "uuuu");
+        }
         this.from = LocalDateTime.parse(from, formatter);
         this.to = LocalDateTime.parse(to, formatter);
     }

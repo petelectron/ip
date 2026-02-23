@@ -1,9 +1,12 @@
 package mortis.parser;
 
+import javafx.scene.chart.PieChart;
 import mortis.MortisException;
 import mortis.task.Task;
 import mortis.task.TaskList;
 import mortis.ui.Ui;
+
+import java.time.DateTimeException;
 
 /**
  * Parses user input.
@@ -102,6 +105,8 @@ public class Parser {
             return ui.addSuccessfulMessage(task);
         } catch (MortisException | ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
             return ui.invalidTaskDetails();
+        } catch (DateTimeException e) {
+            return ui.invalidDateMessage();
         }
     }
 

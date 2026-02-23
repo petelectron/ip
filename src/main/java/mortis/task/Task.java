@@ -2,6 +2,8 @@ package mortis.task;
 
 import mortis.MortisException;
 
+import java.time.DateTimeException;
+
 /**
  * A task with a description and completion status.
  */
@@ -34,7 +36,7 @@ public class Task {
      * @return new Task created from input string.
      * @throws MortisException if input string is invalid.
      */
-    public static Task createFromInput(String str) throws MortisException {
+    public static Task createFromInput(String str) throws MortisException, DateTimeException {
         if (str.contains("|")) {
             throw new MortisException("Invalid character detected in input: '|' delimiter ");
         }
@@ -71,7 +73,7 @@ public class Task {
         String[] arr = str.split(", ");
         Task task = null;
         if (arr[0].equals("T")) {
-            task = (arr[3] != null)
+            task = (arr.length > 3 && arr[3].startsWith("after"))
                 ? new Todo(arr[2], arr[3]) //todo after
                 : new Todo(arr[2]);
         } else if (arr[0].equals("D")) {

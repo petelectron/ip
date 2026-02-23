@@ -50,6 +50,8 @@ public class Ui {
         Event: "add event, <description>, (optional) after <description 2>, <start>, <end>"
         """;
 
+    private final String INVALID_DATE_MESSAGE = "Invalid date detected in input!";
+
     /**
      * Returns a welcome message for the user.
      */
@@ -116,5 +118,9 @@ public class Ui {
 
     public String saveSuccessful(String filePath) {
         return "Successfully saved updated task list into " + filePath;
+    }
+
+    public String invalidDateMessage() {
+        return INVALID_DATE_MESSAGE;
     }
 }

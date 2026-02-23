@@ -1,7 +1,9 @@
 package mortis.task;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 /**
  * A Deadline task.
@@ -9,17 +11,24 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
 
     protected LocalDateTime deadline;
-    protected DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    protected DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm").withResolverStyle(ResolverStyle.STRICT);
     protected DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd HH:mm, yyyy");
 
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, String deadline) throws DateTimeException {
         super(description);
         this.after = "";
+        if (deadline.contains("yyyy")) {
+            deadline = deadline.replace("yyyy", "uuuu");
+        }
         this.deadline = LocalDateTime.parse(deadline, formatter);
     }
 
     public Deadline(String description, String after, String deadline) {
         super(description, after);
+        if (deadline.contains("yyyy")) {
+            deadline = deadline.replace("yyyy", "uuuu");
+        }
         this.deadline = LocalDateTime.parse(deadline, formatter);
     }
 
