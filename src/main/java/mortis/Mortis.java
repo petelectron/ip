@@ -19,6 +19,7 @@ public class Mortis {
     private final Parser parser;
     private final Ui ui;
     private boolean shouldExit = false;
+    private String initMessage = "";
 
     /**
      * Constructs a Mortis instance, loading tasks from storage.
@@ -29,16 +30,21 @@ public class Mortis {
         this.storage = new Storage(FILEPATH);
         this.parser = new Parser();
         this.ui = new Ui();
+        StringBuilder sb = new StringBuilder();
 
         TaskList loadedTasks;
         try {
             loadedTasks = new TaskList(storage.load());
-        } catch (IOException e) {
-            loadedTasks = new TaskList(new ArrayList<>());
         } catch (MortisException e) {
+            sb.append(e.getMessage());
             loadedTasks = new TaskList(new ArrayList<>());
         }
+        this.initMessage += sb.toString();
         this.taskList = loadedTasks;
+    }
+
+    public String getInitMessage() {
+        return this.initMessage;
     }
 
     /**
@@ -56,7 +62,7 @@ public class Mortis {
             try {
                 response.append(storage.save(taskList));
                 shouldExit = true;
-            } catch (IOException e) {
+            } catch (MortisException e) {
                 return e.getMessage();
             }
         } else {

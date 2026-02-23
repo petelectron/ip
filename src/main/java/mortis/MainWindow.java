@@ -33,8 +33,7 @@ public class MainWindow extends AnchorPane {
     /** Injects the Mortis instance */
     public void setMortis(Mortis m) {
         mortis = m;
-        // Display welcome message immediately
-        String welcome = mortis.getWelcomeMessage();
+        String welcome = mortis.getWelcomeMessage() + "\n" + mortis.getInitMessage();
         dialogContainer.getChildren().add(
             DialogBox.getMortisDialog(welcome, mortisImage)
         );
