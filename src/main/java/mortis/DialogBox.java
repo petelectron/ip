@@ -49,12 +49,17 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.setStyle("-fx-background-color: #F0DDC8; -fx-background-radius: 12; -fx-padding: 10;");
+        db.dialog.setStyle("-fx-text-fill: #212B50;");
+        return db;
     }
 
     public static DialogBox getMortisDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.setStyle("-fx-background-color: #E7EDDE; -fx-background-radius: 12; -fx-padding: 10;");
+        db.dialog.setStyle("-fx-text-fill: #212121;");
         return db;
     }
 }
