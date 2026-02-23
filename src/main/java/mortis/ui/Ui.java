@@ -23,9 +23,9 @@ public class Ui {
             >unmark <num> (unmark task at position <num>),
             >delete <num> (delete task at position <num>),
             >find <description> (find tasks based on search),
-            >add todo, <description> (add a todo task)
-            >add deadline, <description>, <deadline> (add a deadline task)
-            >add event, <description>, <start>, <end> (add an event task)
+            Todo: "add todo, <description>, (optional) after <description 2>"
+            Deadline: "add deadline, <description>, (optional) after <description 2>, <deadline>"
+            Event: "add event, <description>, (optional) after <description 2>, <start>, <end>"
             >bye (terminate the program)
             """;
     private final String FIND_ERROR_MESSAGE = "Please provide a valid keyword to find.";
@@ -45,9 +45,9 @@ public class Ui {
     private final String MISSING_TASK_DETAILS = """
         Please provide the necessary details for the task.
         Command format:
-        Todo: "add todo, <description>"
-        Deadline: "add deadline, <description>, <deadline>"
-        Event: "add event, <description>, <start>, <end>"
+        Todo: "add todo, <description>, (optional) after <description 2>"
+        Deadline: "add deadline, <description>, (optional) after <description 2>, <deadline>"
+        Event: "add event, <description>, (optional) after <description 2>, <start>, <end>"
         """;
 
     /**

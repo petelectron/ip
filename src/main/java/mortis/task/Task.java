@@ -121,6 +121,6 @@ public class Task {
     @Override
     public String toString() {
         return getStatusIcon() + " " + description
-            + (after.isEmpty() ? "" : ", " + after);
+            + (after.isEmpty() ? "" : " (" + after + ")");
     }
 }

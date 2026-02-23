@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root alignment="TOP_RIGHT" maxWidth="Infinity"
+<fx:root alignment="TOP_RIGHT" maxWidth="Infinity" maxHeight="Infinity"
          type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" minHeight="-Infinity" text="Label" textOverrun="CLIP" wrapText="true" HBox.hgrow="ALWAYS">
+        <Label fx:id="dialog" minHeight="-Infinity" maxHeight="Infinity" text="Label" textOverrun="CLIP" wrapText="true" HBox.hgrow="ALWAYS">
             <font>
                 <Font name="Candara" size="12.0"/>
             </font>

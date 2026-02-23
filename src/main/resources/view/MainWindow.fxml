@@ -33,7 +33,7 @@
             <content>
                 <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="400.0"
                       style="-fx-background-color: transparent;"
-                    VBox.vgrow = "ALWAYS"/>
+                    />
             </content>
         </ScrollPane>
     </children>

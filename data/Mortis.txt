@@ -1,0 +1,3 @@
+T, 0, make breakfast, after brushing teeth
+D, 0, project writeup, 2026-02-23 2359
+E, 0, project meeting, 2026-02-24 1800, 2026-02-24 1900
