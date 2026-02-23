@@ -30,6 +30,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+            this.setMargin(this, new javafx.geometry.Insets(5));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,7 +51,7 @@ public class DialogBox extends HBox {
 
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.setStyle("-fx-background-color: #F0DDC8; -fx-background-radius: 12; -fx-padding: 10;");
+        db.setStyle("-fx-background-color: rgba(240, 221, 200, 0.95); -fx-background-radius: 12; -fx-padding: 10;");
         db.dialog.setStyle("-fx-text-fill: #212B50;");
         return db;
     }
@@ -58,7 +59,7 @@ public class DialogBox extends HBox {
     public static DialogBox getMortisDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
-        db.setStyle("-fx-background-color: #E7EDDE; -fx-background-radius: 12; -fx-padding: 10;");
+        db.setStyle("-fx-background-color: rgba(233, 240, 225, 0.95); -fx-background-radius: 12; -fx-padding: 10;");
         db.dialog.setStyle("-fx-text-fill: #212121;");
         return db;
     }

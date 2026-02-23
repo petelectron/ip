@@ -1,12 +1,13 @@
 package mortis;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+
 /**
  * Controller for the main GUI.
  */
@@ -24,10 +25,14 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image mortisImage = new Image(this.getClass().getResourceAsStream("/images/Mortis.png"));
+    private Image wallpaper = new Image(this.getClass().getResourceAsStream("/images/Wallpaper.jpg"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        Platform.runLater(() ->
+            scrollPane.lookup(".viewport").setStyle("-fx-background-color: transparent;")
+        );
     }
 
     /** Injects the Mortis instance */

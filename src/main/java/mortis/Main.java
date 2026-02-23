@@ -24,6 +24,9 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Mortis");
+            stage.setMinHeight(200.0);
+            stage.setMinWidth(200.0);
             fxmlLoader.<MainWindow>getController().setMortis(mortis);  // inject the Duke instance
 
             stage.show();
