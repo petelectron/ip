@@ -7,14 +7,14 @@ It has an efficient CLI input system, while having a friendly GUI.
 1. Ensure you have Java 17 installed.
 2. Download the jar file.
 3. Copy the file to the folder you want to use as the home folder for the application.
-4. Run it by double clicking, or open a command terminal, 
+4. Run it by double-clicking the file, or open a command terminal, 
 cd into the folder you put the jar file in, and use the java -jar mortis.jar command to run the application.
 
 Inputting any non-keyword, such as "help" or "hi",
 will display a list of commands available.
 
 ## List of commands
-- add
+- add (todo, deadline, event)
 - list
 - find
 - delete
