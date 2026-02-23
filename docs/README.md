@@ -5,7 +5,7 @@ It has an efficient CLI input system, while having a friendly GUI.
 
 ## Getting started
 1. Ensure you have Java 17 installed.
-2. Download the jar file.
+2. Download the jar file from https://github.com/petelectron/ip/releases/tag/v0.2.
 3. Copy the file to the folder you want to use as the home folder for the application.
 4. Run it by double-clicking the file, or open a command terminal, 
 cd into the folder you put the jar file in, and use the java -jar mortis.jar command to run the application.
